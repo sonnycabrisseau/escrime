@@ -22,12 +22,12 @@ class Lesson
     private $libelle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\utilisateur", inversedBy="lessons")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="lessons")
      */
     private $libelleUtilisateur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\entrainement", inversedBy="lessons")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entrainement", inversedBy="lessons")
      */
     private $lessonEntrainement;
 
@@ -70,5 +70,10 @@ class Lesson
         $this->lessonEntrainement = $lessonEntrainement;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }
