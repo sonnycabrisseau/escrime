@@ -64,12 +64,18 @@ class Utilisateur
      */
     private $utilisateurObjectif;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetionUtilisateur", mappedBy="resultatUtilisateur")
+     */
+    private $competionUtilisateurs;
+
     public function __construct()
     {
         $this->entrainements = new ArrayCollection();
         $this->lessons = new ArrayCollection();
         $this->competitions = new ArrayCollection();
         $this->utilisateurObjectif = new ArrayCollection();
+        $this->competionUtilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -258,5 +264,36 @@ class Utilisateur
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|CompetionUtilisateur[]
+     */
+    public function getCompetionUtilisateurs(): Collection
+    {
+        return $this->competionUtilisateurs;
+    }
+
+    public function addCompetionUtilisateur(CompetionUtilisateur $competionUtilisateur): self
+    {
+        if (!$this->competionUtilisateurs->contains($competionUtilisateur)) {
+            $this->competionUtilisateurs[] = $competionUtilisateur;
+            $competionUtilisateur->setResultatUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetionUtilisateur(CompetionUtilisateur $competionUtilisateur): self
+    {
+        if ($this->competionUtilisateurs->contains($competionUtilisateur)) {
+            $this->competionUtilisateurs->removeElement($competionUtilisateur);
+            // set the owning side to null (unless already changed)
+            if ($competionUtilisateur->getResultatUtilisateur() === $this) {
+                $competionUtilisateur->setResultatUtilisateur(null);
+            }
+        }
+
+        return $this;
     }
 }

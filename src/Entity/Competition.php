@@ -43,9 +43,15 @@ class Competition
      */
     private $competitionUtilisateur;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\competionUtilisateur", mappedBy="competition")
+     */
+    private $competitionResultat;
+
     public function __construct()
     {
-        $this->competitionUtilisateur = new ArrayCollection();
+        
+        $this->competitionResultat = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,27 +107,34 @@ class Competition
         return $this;
     }
 
+ 
+
     /**
-     * @return Collection|utilisateur[]
+     * @return Collection|competionUtilisateur[]
      */
-    public function getCompetitionUtilisateur(): Collection
+    public function getCompetitionResultat(): Collection
     {
-        return $this->competitionUtilisateur;
+        return $this->competitionResultat;
     }
 
-    public function addCompetitionUtilisateur(utilisateur $competitionUtilisateur): self
+    public function addCompetitionResultat(competionUtilisateur $competitionResultat): self
     {
-        if (!$this->competitionUtilisateur->contains($competitionUtilisateur)) {
-            $this->competitionUtilisateur[] = $competitionUtilisateur;
+        if (!$this->competitionResultat->contains($competitionResultat)) {
+            $this->competitionResultat[] = $competitionResultat;
+            $competitionResultat->setCompetition($this);
         }
 
         return $this;
     }
 
-    public function removeCompetitionUtilisateur(utilisateur $competitionUtilisateur): self
+    public function removeCompetitionResultat(competionUtilisateur $competitionResultat): self
     {
-        if ($this->competitionUtilisateur->contains($competitionUtilisateur)) {
-            $this->competitionUtilisateur->removeElement($competitionUtilisateur);
+        if ($this->competitionResultat->contains($competitionResultat)) {
+            $this->competitionResultat->removeElement($competitionResultat);
+            // set the owning side to null (unless already changed)
+            if ($competitionResultat->getCompetition() === $this) {
+                $competitionResultat->setCompetition(null);
+            }
         }
 
         return $this;
