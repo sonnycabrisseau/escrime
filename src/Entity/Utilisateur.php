@@ -295,4 +295,6 @@ class Utilisateur
 
         return $this;
     }
+
+    
 }

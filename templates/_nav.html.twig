@@ -1,0 +1,18 @@
+{% set currentRoute = app.request.attributes.get('_route') %}
+
+<div class="container">
+    <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('lesson_index') }}">Leçon</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('objectif_index') }}">Objectif</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('competition_index') }}">Competition</a>
+            </li>
+            
+    </ul>
+</div>
