@@ -39,7 +39,7 @@ class Competition
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\utilisateur", inversedBy="competitions")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Utilisateur", inversedBy="competitions")
      */
     private $CompetionUtilisateur;
 

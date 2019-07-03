@@ -1,0 +1,11 @@
+{% set currentRoute = app.request.attributes.get('_route') %}
+
+<div class="container">
+    <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+     * @Route("/new", name="objectif_new", methods={"GET","POST"})
+                <a class="nav-link" href="{{ path('app_admin_index') }}">Administration</a>
+            </li>
+            
+    </ul>
+</div>
