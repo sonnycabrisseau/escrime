@@ -2,37 +2,34 @@
 
 namespace App\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="utilisateur")
  */
-class Utilisateur
+class Utilisateur extends BaseUser
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\RoleUser", inversedBy="utilisateurs")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $keyRoleUser;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Entrainement", mappedBy="entrainementUtilisateur")
@@ -47,17 +44,6 @@ class Utilisateur
     /*a supp @ORM\ManyToMany(targetEntity="App\Entity\Competition", mappedBy="CompetionUtilisateur")*/
 
     private $competitions;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $login;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mdp;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Objectif", mappedBy="utilisateur")
      */
@@ -80,42 +66,6 @@ class Utilisateur
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getKeyRoleUser(): ?roleUser
-    {
-        return $this->keyRoleUser;
-    }
-
-    public function setKeyRoleUser(?roleUser $keyRoleUser): self
-    {
-        $this->keyRoleUser = $keyRoleUser;
-
-        return $this;
     }
 
     /**
@@ -201,30 +151,6 @@ class Utilisateur
             $this->competitions->removeElement($competition);
             $competition->removeCompetionUtilisateur($this);
         }
-
-        return $this;
-    }
-
-    public function getLogin(): ?string
-    {
-        return $this->login;
-    }
-
-    public function setLogin(string $login): self
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    public function getMdp(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setMdp(string $mdp): self
-    {
-        $this->mdp = $mdp;
 
         return $this;
     }
