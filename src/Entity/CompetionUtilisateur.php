@@ -27,7 +27,7 @@ class CompetionUtilisateur
     private $competition;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\utilisateur", inversedBy="competionUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\utilisateur", inversedBy="CompetionUtilisateur")
      */
     private $resultatUtilisateur;
 

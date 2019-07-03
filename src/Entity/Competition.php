@@ -41,10 +41,10 @@ class Competition
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\utilisateur", inversedBy="competitions")
      */
-    private $competitionUtilisateur;
+    private $CompetionUtilisateur;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\competionUtilisateur", mappedBy="competition")
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetionUtilisateur", mappedBy="competition")
      */
     private $competitionResultat;
 
@@ -110,14 +110,14 @@ class Competition
  
 
     /**
-     * @return Collection|competionUtilisateur[]
+     * @return Collection|CompetionUtilisateur[]
      */
     public function getCompetitionResultat(): Collection
     {
         return $this->competitionResultat;
     }
 
-    public function addCompetitionResultat(competionUtilisateur $competitionResultat): self
+    public function addCompetitionResultat(CompetionUtilisateur $competitionResultat): self
     {
         if (!$this->competitionResultat->contains($competitionResultat)) {
             $this->competitionResultat[] = $competitionResultat;
@@ -127,7 +127,7 @@ class Competition
         return $this;
     }
 
-    public function removeCompetitionResultat(competionUtilisateur $competitionResultat): self
+    public function removeCompetitionResultat(CompetionUtilisateur $competitionResultat): self
     {
         if ($this->competitionResultat->contains($competitionResultat)) {
             $this->competitionResultat->removeElement($competitionResultat);

@@ -44,9 +44,8 @@ class Utilisateur
      */
     private $lessons;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Competition", mappedBy="competitionUtilisateur")
-     */
+    /*a supp @ORM\ManyToMany(targetEntity="App\Entity\Competition", mappedBy="CompetionUtilisateur")*/
+
     private $competitions;
 
     /**
@@ -67,7 +66,7 @@ class Utilisateur
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CompetionUtilisateur", mappedBy="resultatUtilisateur")
      */
-    private $competionUtilisateurs;
+    private $CompetionUtilisateurs;
 
     public function __construct()
     {
@@ -75,7 +74,7 @@ class Utilisateur
         $this->lessons = new ArrayCollection();
         $this->competitions = new ArrayCollection();
         $this->utilisateurObjectif = new ArrayCollection();
-        $this->competionUtilisateurs = new ArrayCollection();
+        $this->CompetionUtilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,7 +189,7 @@ class Utilisateur
     {
         if (!$this->competitions->contains($competition)) {
             $this->competitions[] = $competition;
-            $competition->addCompetitionUtilisateur($this);
+            $competition->addCompetionUtilisateur($this);
         }
 
         return $this;
@@ -200,7 +199,7 @@ class Utilisateur
     {
         if ($this->competitions->contains($competition)) {
             $this->competitions->removeElement($competition);
-            $competition->removeCompetitionUtilisateur($this);
+            $competition->removeCompetionUtilisateur($this);
         }
 
         return $this;
@@ -271,26 +270,26 @@ class Utilisateur
      */
     public function getCompetionUtilisateurs(): Collection
     {
-        return $this->competionUtilisateurs;
+        return $this->CompetionUtilisateurs;
     }
 
-    public function addCompetionUtilisateur(CompetionUtilisateur $competionUtilisateur): self
+    public function addCompetionUtilisateur(CompetionUtilisateur $CompetionUtilisateur): self
     {
-        if (!$this->competionUtilisateurs->contains($competionUtilisateur)) {
-            $this->competionUtilisateurs[] = $competionUtilisateur;
-            $competionUtilisateur->setResultatUtilisateur($this);
+        if (!$this->CompetionUtilisateurs->contains($CompetionUtilisateur)) {
+            $this->CompetionUtilisateurs[] = $CompetionUtilisateur;
+            $CompetionUtilisateur->setResultatUtilisateur($this);
         }
 
         return $this;
     }
 
-    public function removeCompetionUtilisateur(CompetionUtilisateur $competionUtilisateur): self
+    public function removeCompetionUtilisateur(CompetionUtilisateur $CompetionUtilisateur): self
     {
-        if ($this->competionUtilisateurs->contains($competionUtilisateur)) {
-            $this->competionUtilisateurs->removeElement($competionUtilisateur);
+        if ($this->CompetionUtilisateurs->contains($CompetionUtilisateur)) {
+            $this->CompetionUtilisateurs->removeElement($CompetionUtilisateur);
             // set the owning side to null (unless already changed)
-            if ($competionUtilisateur->getResultatUtilisateur() === $this) {
-                $competionUtilisateur->setResultatUtilisateur(null);
+            if ($CompetionUtilisateur->getResultatUtilisateur() === $this) {
+                $CompetionUtilisateur->setResultatUtilisateur(null);
             }
         }
 
