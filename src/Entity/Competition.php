@@ -139,4 +139,26 @@ class Competition
 
         return $this;
     }
+
+    
+
+    /**
+     * Get the value of CompetionUtilisateur
+     */ 
+    public function getCompetionUtilisateur()
+    {
+        return $this->CompetionUtilisateur;
+    }
+
+    /**
+     * Set the value of CompetionUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setCompetionUtilisateur($CompetionUtilisateur)
+    {
+        $this->CompetionUtilisateur = $CompetionUtilisateur;
+
+        return $this;
+    }
 }
