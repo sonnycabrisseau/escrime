@@ -1,9 +1,6 @@
 {% set currentRoute = app.request.attributes.get('_route') %}
 
-
-<nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-
+<div class="container">
     <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('lesson_index') }}">Leçon</a>
@@ -23,4 +20,4 @@
            
             
     </ul>
-</nav>
+</div>
