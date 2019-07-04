@@ -13,7 +13,6 @@ class LessonType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('libelleUtilisateur')
             ->add('lessonEntrainement')
         ;
     }

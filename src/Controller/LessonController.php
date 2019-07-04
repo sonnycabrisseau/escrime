@@ -21,7 +21,7 @@ class LessonController extends AbstractController
     public function index(LessonRepository $lessonRepository): Response
     {
         return $this->render('lesson/index.html.twig', [
-            'lessons' => $lessonRepository->findAll(),
+            'lessons' => $lessonRepository->findByUsers($this->getUser()->getId()),
         ]);
     }
 
@@ -36,6 +36,7 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $lesson->setLibelleUtilisateur($this->getUser()->getUsername());
             $entityManager->persist($lesson);
             $entityManager->flush();
 

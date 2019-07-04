@@ -19,6 +19,17 @@ class ObjectifRepository extends ServiceEntityRepository
         parent::__construct($registry, Objectif::class);
     }
 
+    public function findByUsers($id)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.utilisateur = :userId')
+            ->setParameter('userId', $id)
+            ->orderBy('o.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Objectif[] Returns an array of Objectif objects
     //  */

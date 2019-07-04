@@ -21,7 +21,7 @@ class ObjectifController extends AbstractController
     public function index(ObjectifRepository $objectifRepository): Response
     {
         return $this->render('objectif/index.html.twig', [
-            'objectifs' => $objectifRepository->findAll(),
+            'objectifs' => $objectifRepository->findByUsers($this->getUser()->getId()),
         ]);
     }
 

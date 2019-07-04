@@ -19,6 +19,17 @@ class LessonRepository extends ServiceEntityRepository
         parent::__construct($registry, Lesson::class);
     }
 
+    public function findByUsers($id)
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.libelleUtilisateur = :userId')
+            ->setParameter('userId', $id)
+            ->orderBy('l.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Lesson[] Returns an array of Lesson objects
     //  */
