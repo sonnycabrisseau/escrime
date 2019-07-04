@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Entity\Utilisateur;
 use App\Form\LessonType;
 use App\Repository\LessonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,7 +37,7 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $lesson->setLibelleUtilisateur($this->getUser()->getUsername());
+            $lesson->setLibelleUtilisateur($this->getUser());
             $entityManager->persist($lesson);
             $entityManager->flush();
 

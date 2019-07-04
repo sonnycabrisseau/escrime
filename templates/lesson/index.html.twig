@@ -19,8 +19,8 @@
                 <td>{{ lesson.id }}</td>
                 <td>{{ lesson.libelle }}</td>
                 <td>
-                    <a href="{{ path('lesson_show', {'id': lesson.id}) }}">show</a>
-                    <a href="{{ path('lesson_edit', {'id': lesson.id}) }}">edit</a>
+                    <button type="button" class="btn btn-primary"><a style="color:white;" href="{{ path('lesson_show', {'id': lesson.id}) }}">show</a></button>
+                    <button type="button" class="btn btn-secondary"><a style="color:white;" href="{{ path('lesson_edit', {'id': lesson.id}) }}">edit</a></button>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('lesson_new') }}">Create new</a>
+    <button type="button" class="btn btn-success"><a style="color:white;" href="{{ path('lesson_new') }}">Create new</a></button>
 {% endblock %}
