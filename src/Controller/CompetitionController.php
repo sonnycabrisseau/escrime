@@ -22,6 +22,7 @@ class CompetitionController extends AbstractController
     {
         return $this->render('competition/index.html.twig', [
             'competitions' => $competitionRepository->findAll(),
+            'utilisateur' => $this->getUser(),
         ]);
     }
 

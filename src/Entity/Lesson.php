@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LessonRepository")
+ *  @ApiResource()
  */
 class Lesson
 {
@@ -25,6 +27,11 @@ class Lesson
      * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="lessons")
      */
     private $libelleUtilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="lessons")
+     */
+    private $libelleMaitreArme;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Entrainement", inversedBy="lessons")
@@ -75,5 +82,25 @@ class Lesson
     public function __toString()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Get the value of libelleMaitreArme
+     */ 
+    public function getLibelleMaitreArme()
+    {
+        return $this->libelleMaitreArme;
+    }
+
+    /**
+     * Set the value of libelleMaitreArme
+     *
+     * @return  self
+     */ 
+    public function setLibelleMaitreArme($libelleMaitreArme)
+    {
+        $this->libelleMaitreArme = $libelleMaitreArme;
+
+        return $this;
     }
 }

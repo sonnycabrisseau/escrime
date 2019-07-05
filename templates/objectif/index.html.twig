@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Objectif index{% endblock %}
+{% block title %}Mes Objectifs{% endblock %}
 
 {% block body %}
-    <h1>Objectif index</h1>
+    <h1>Mes Objectifs</h1>
 
     <table class="table">
         <thead>
@@ -21,8 +21,8 @@
                 <td>{{ objectif.libelle }}</td>
                 <td>{{ objectif.valide ? 'Yes' : 'No' }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary">Primary</button> <a style="color:white;" href="{{ path('objectif_show', {'id': objectif.id}) }}">show</a></button>
-                    <button type="button" class="btn btn-primary">Primary</button> <a style="color:white;" href="{{ path('objectif_edit', {'id': objectif.id}) }}">edit</a></button>
+                    <button type="button" class="btn btn-primary"><a style="color:white;" href="{{ path('objectif_show', {'id': objectif.id}) }}">Voir</a></button>
+                    <button type="button" class="btn btn-primary"><a style="color:white;" href="{{ path('objectif_edit', {'id': objectif.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-success"><a style="color:white" href="{{ path('objectif_new') }}">Create new</a></button>
+    <button type="button" class="btn btn-success"><a style="color:white" href="{{ path('objectif_new') }}">Ajouter</a></button>
 {% endblock %}

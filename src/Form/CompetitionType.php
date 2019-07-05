@@ -16,7 +16,6 @@ class CompetitionType extends AbstractType
             ->add('lieu')
             ->add('description')
             ->add('date')
-            ->add('CompetionUtilisateur')
         ;
     }
 

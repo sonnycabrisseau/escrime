@@ -14,6 +14,7 @@ class LessonType extends AbstractType
         $builder
             ->add('libelle')
             ->add('lessonEntrainement')
+            ->add('libelleMaitreArme')
         ;
     }
 

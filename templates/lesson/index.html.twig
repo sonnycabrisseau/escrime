@@ -3,13 +3,15 @@
 {% block title %}Lesson index{% endblock %}
 
 {% block body %}
-    <h1>Lesson index</h1>
+    <h1>Mes leçons</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Libelle</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Maitre</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,9 +20,11 @@
             <tr>
                 <td>{{ lesson.id }}</td>
                 <td>{{ lesson.libelle }}</td>
+                <td>{{ lesson.lessonEntrainement }}</td>
+                 <td>{{ lesson.libelleMaitreArme }}</td>
                 <td>
-                   <button type="button" class="btn btn-primary">Primary</button> <a style="color:white;" href="{{ path('lesson_show', {'id': lesson.id}) }}">show</a></button>
-                    <button type="button" class="btn btn-primary">Primary</button><a style="color:white;" href="{{ path('lesson_edit', {'id': lesson.id}) }}">edit</a></button>
+                   <button type="button" class="btn btn-primary"><a style="color:white;" href="{{ path('lesson_show', {'id': lesson.id}) }}">Voir</a></button>
+                    <button type="button" class="btn btn-primary"><a style="color:white;" href="{{ path('lesson_edit', {'id': lesson.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +35,5 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-success"><a style="color:white;" href="{{ path('lesson_new') }}">Create new</a></button>
+    <button type="button" class="btn btn-success"><a style="color:white;" href="{{ path('lesson_new') }}">Ajouter</a></button>
 {% endblock %}

@@ -36,6 +36,7 @@ class ObjectifController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $objectif->setUtilisateur($this->getUser());
             $entityManager->persist($objectif);
             $entityManager->flush();
 

@@ -26,7 +26,14 @@
                 <td>{{ competition.date ? competition.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('competition_show', {'id': competition.id}) }}">show</a>
+                    {% if utilisateur.titre == 'admin' %}
                     <a href="{{ path('competition_edit', {'id': competition.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+                <td>
+                 {% if utilisateur.titre == 'tireur' %}
+                 <a href="#">Engager</a>
+                 {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -36,6 +43,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if utilisateur.titre == 'admin' %}
     <a href="{{ path('competition_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Lesson;
 use App\Form\LessonType;
+use App\Entity\Utilisateur;
 use App\Repository\LessonRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/lesson")
@@ -36,13 +38,13 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $lesson->setLibelleUtilisateur($this->getUser()->getUsername());
+            $lesson->setLibelleUtilisateur($this->getUser());
             $entityManager->persist($lesson);
             $entityManager->flush();
 
             return $this->redirectToRoute('lesson_index');
         }
-
+        
         return $this->render('lesson/new.html.twig', [
             'lesson' => $lesson,
             'form' => $form->createView(),

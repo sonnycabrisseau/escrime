@@ -14,7 +14,7 @@ class ObjectifType extends AbstractType
         $builder
             ->add('libelle')
             ->add('valide')
-            ->add('utilisateur')
+
         ;
     }
 

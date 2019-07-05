@@ -19,6 +19,17 @@ class UtilisateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateur::class);
     }
 
+    public function findByTitre($titre)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.titre LIKE :titre')
+            ->setParameter('titre', $titre)
+            ->orderBy('u.titre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects
     //  */

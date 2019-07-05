@@ -7,10 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="utilisateur")
+ * @ApiResource()
  */
 class Utilisateur extends BaseUser
 {
@@ -25,6 +27,13 @@ class Utilisateur extends BaseUser
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $titre;
+
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -223,13 +232,33 @@ class Utilisateur extends BaseUser
     }
 
     public function getRoles(): array
-{
-    $roles = $this->roles;
-    // guarantee every user at least has ROLE_USER
-    $roles[] = 'ROLE_USER';
+        {
+            $roles = $this->roles;
+            // guarantee every user at least has ROLE_USER
+            $roles[] = 'ROLE_USER';
 
-    return array_unique($roles);
-}
+            return array_unique($roles);
+        }
 
     
+
+    /**
+     * Get the value of titre
+     */ 
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set the value of titre
+     *
+     * @return  self
+     */ 
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
 }
